@@ -22,8 +22,7 @@ public class StudentController {
     @PostMapping("/createStudent")
     @ResponseBody
     public ResponseEntity<?> createStudent(@RequestBody Student student){
-      //  Student student = new Student(name,telefon,adress) ;
-       if( student.getName().equals("") || student.getTelefon()==0 || student.getAdress().equals("")){
+        if( student.getName().equals("") || student.getTelefon()==0 || student.getAdress().equals("")){
            return ResponseEntity.ok("The fields is required!");
        }
 
@@ -33,7 +32,7 @@ public class StudentController {
     @DeleteMapping("/deleteStudentById/{id}")
     @ResponseBody
     public ResponseEntity<?> deleteStudentById(@PathVariable Long id){
-        Student student = studentService.findStudentById(id).get();
+        Student student = studentService.findStudentById(id) ;
         if(student!=null){
             studentService.deleteStudent(student);
             return ResponseEntity.ok("success to delete");
@@ -45,7 +44,7 @@ public class StudentController {
     @PutMapping("/editStudentById/{id}")
     @ResponseBody
     public ResponseEntity<?> editStudentById(@PathVariable Long id,@RequestBody Student editStudent){
-        Student student = studentService.findStudentById(id).get();
+        Student student = studentService.findStudentById(id) ;
         if(student!=null){
             student.setName(editStudent.getName()) ;
             student.setTelefon(editStudent.getTelefon()); ;
@@ -60,9 +59,9 @@ public class StudentController {
     @GetMapping("/findStudentById/{id}")
     @ResponseBody
     public  ResponseEntity<?> findStudentById(@PathVariable Long id){
-        Student student = studentService.findStudentById(id).orElseThrow();
+        Student student = studentService.findStudentById(id) ;
 
-        if(studentService.findStudentById(id)!=null){
+        if(student!=null){
             return ResponseEntity.ok(student);
         }else {
             return ResponseEntity.ok("Not Found " + id);

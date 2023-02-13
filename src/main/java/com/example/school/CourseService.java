@@ -13,8 +13,8 @@ public class CourseService {
 
 
 
-    public void createCourse(Course course){
-        courseRepository.save(course) ;
+    public Course createCourse(Course course){
+        return courseRepository.save(course) ;
     }
     public void deleteCourse(Course course){
         courseRepository.delete(course);
@@ -22,12 +22,14 @@ public class CourseService {
     public List<Course> listOfAllCourses(){
         return (List<Course>) courseRepository.findAll();
     }
-//    public Course findCourseById(Long id){
-//
-//        Optional<Course> course= courseRepository.findById(id);
-//        if(course!= null){
-//
-//        }
-//
-//    }
+    public Course findCourseById(Long id){
+      Course course = courseRepository.findById(id).orElse(null) ;
+      if(course!=null){
+          return course ;
+      }
+      else{
+          return null ;
+      }
+
+    }
 }

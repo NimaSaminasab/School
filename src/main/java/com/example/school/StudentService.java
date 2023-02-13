@@ -16,12 +16,10 @@ public class StudentService {
       return studentRepository.findAll();
     }
 
-    public Optional<Student> findStudentById(Long id){
+    public Student findStudentById(Long id){
 
-        if(studentRepository.existsById(id)){
-            return studentRepository.findById(id) ;
-        }
-        return Optional.empty();
+        Student student = studentRepository.findById(id).orElse(null);
+       return student ;
     }
 
     public Student insertStudent(Student student){
