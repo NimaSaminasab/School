@@ -1,10 +1,14 @@
 package com.example.school;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @Table
 @Entity
-//@JsonIdentityInfo()
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +17,8 @@ public class Student {
     String name ;
     Long telefon ;
     String adress ;
+    @OneToMany(mappedBy = "student")
+    List<Student_Course> studentCourseList ;
 
     public Student(){}
     public Student(String name, Long telefon, String adress) {

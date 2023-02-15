@@ -42,12 +42,12 @@ public class CourseController {
     public ResponseEntity<?> editCourseById(@PathVariable long id,@RequestBody Course course){
         Course course1 = courseService.findCourseById(id) ;
         if(course1!=null) {
-            course.setName(course1.getName());
-            course.setPoint(course1.getPoint());
-            courseService.createCourse(course) ;
-            return ResponseEntity.ok(course + "is updated ") ;
+            course1.setName(course.getName());
+            course1.setPoint(course.getPoint());
+            courseService.createCourse(course1) ;
+            return ResponseEntity.ok(course1.getId() + " is updated ") ;
         }
-        return ResponseEntity.ok(id + "Not Found ");
+        return ResponseEntity.ok(id + " Not Found ");
     }
 
     @GetMapping("findCourseById/{id}")

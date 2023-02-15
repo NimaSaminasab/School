@@ -17,9 +17,7 @@ public class StudentService {
     }
 
     public Student findStudentById(Long id){
-
-        Student student = studentRepository.findById(id).orElse(null);
-       return student ;
+        return studentRepository.findById(id).orElse(null);
     }
 
     public Student insertStudent(Student student){

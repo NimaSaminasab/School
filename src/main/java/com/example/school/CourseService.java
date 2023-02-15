@@ -23,13 +23,7 @@ public class CourseService {
         return (List<Course>) courseRepository.findAll();
     }
     public Course findCourseById(Long id){
-      Course course = courseRepository.findById(id).orElse(null) ;
-      if(course!=null){
-          return course ;
-      }
-      else{
-          return null ;
-      }
+      return courseRepository.findById(id).orElse(null) ;
 
     }
 }

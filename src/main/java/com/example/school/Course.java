@@ -2,6 +2,8 @@ package com.example.school;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Table
 @Entity
 public class Course {
@@ -10,6 +12,9 @@ public class Course {
     Long id ;
     String name ;
     int point ;
+
+    @OneToMany(mappedBy = "course")
+    List<Student_Course> studentCourseList ;
 
     public Course(){}
     public Course(String name, int point) {
