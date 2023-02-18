@@ -9,14 +9,12 @@ public class Student_Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id ;
     @ManyToOne
-    @MapsId("studentId")
     @JoinColumn(name= "student_id")
     Student student ;
     @ManyToOne
-    @MapsId("courseId")
     @JoinColumn(name = "course_id")
     Course course ;
-    private  int grade ;
+    private int grade=-1 ;// not set grade
 
     public Student_Course(){}
     public Student_Course(Student student, Course course) {

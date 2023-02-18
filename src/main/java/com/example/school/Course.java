@@ -3,6 +3,7 @@ package com.example.school;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Table
 @Entity
@@ -14,7 +15,7 @@ public class Course {
     int point ;
 
     @OneToMany(mappedBy = "course")
-    List<Student_Course> studentCourseList ;
+    Set<Student_Course> studentCourseList ;
 
     public Course(){}
     public Course(String name, int point) {

@@ -1,6 +1,7 @@
 package com.example.school;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,16 +17,28 @@ public class Student_CourseController {
     @Autowired
     CourseService courseService;
 
-    @GetMapping("/student_Course/{id}")
-    public ResponseEntity<List<Course>> getListOfCoursesForStudent(@PathVariable long id){
-        return ResponseEntity.ok(student_courseService.getCoursesForStudent(id) );
+    @GetMapping("/listCourseForStudent/{id_student}")
+    public ResponseEntity<List<Course>> getListOfCoursesForStudent(@PathVariable long id_student){
+        return ResponseEntity.ok(student_courseService.getCoursesForStudent(id_student) );
     }
-    @PostMapping("/registerCourse")
-    public ResponseEntity<Student_Course> registerCourseForStudent(@RequestBody Student_Course studentCourse ){
-//        System.out.println(student_id);
-//        Student student= studentService.findStudentById(student_id);
-//        Course course=courseService.findCourseById(course_Id);
-//        Student_Course studentCourse=new Student_Course(student, course);
-       return ResponseEntity.ok( student_courseService.registerCourseToStudent(studentCourse) );
+
+
+    @PutMapping("/setGrade/{id_student_course}")
+    public ResponseEntity<Student_Course> setGradeForCourse(@PathVariable long id_student_course,@RequestBody int grad ){
+
+        Student_Course studentCourse=student_courseService.getOneStudentCourse(id_student_course);
+        studentCourse.setGrade(grad);
+        return ResponseEntity.ok(  student_courseService.saveStudentCourse(studentCourse) );
+
     }
+
+    @PostMapping("/registerCourse/{id_student}/{id_course}")
+    public ResponseEntity<Student_Course> registerCourseForStudent(@PathVariable long id_student, @PathVariable long id_course ){
+
+        Student student= studentService.findStudentById(id_student);
+        Course course=courseService.findCourseById(id_course);
+       return ResponseEntity.ok( student_courseService.registerCourseToStudent(student,course));
+    }
+
+
 }

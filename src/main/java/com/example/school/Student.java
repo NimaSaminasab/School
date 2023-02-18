@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Table
 @Entity
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     Long id ;
     String name ;
     Long telefon ;
     String adress ;
-    @OneToMany(mappedBy = "student")
-    List<Student_Course> studentCourseList ;
+    @OneToMany(mappedBy = "student",cascade= CascadeType.ALL)
+    Set<Student_Course> studentCourseList ;
 
     public Student(){}
     public Student(String name, Long telefon, String adress) {
