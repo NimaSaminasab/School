@@ -18,7 +18,7 @@ public class Student_CourseService {
     public Student_Course saveStudentCourse(Student_Course studentCourse){
         return student_courseRepository.save(studentCourse) ;
     }
-    public List<Course> getCoursesForStudent(long studentId){
+    public List<Student_Course> getCoursesForStudent(long studentId){
         return student_courseRepository.getCoursesForStudent(studentId) ;
     }
 

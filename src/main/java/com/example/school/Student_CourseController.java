@@ -18,7 +18,7 @@ public class Student_CourseController {
     CourseService courseService;
 
     @GetMapping("/listCourseForStudent/{id_student}")
-    public ResponseEntity<List<Course>> getListOfCoursesForStudent(@PathVariable long id_student){
+    public ResponseEntity<List<Student_Course>> getListOfCoursesForStudent(@PathVariable long id_student){
         return ResponseEntity.ok(student_courseService.getCoursesForStudent(id_student) );
     }
 

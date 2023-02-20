@@ -18,12 +18,11 @@ public interface Student_CourseRepository extends CrudRepository<Student_Course,
     // from A a
     // left join
     // B b on a.id=b.id
-    @Query("SELECT c,std_crs.grade " +
+    @Query("SELECT std_crs " +
             "FROM Course c " +
             "INNER JOIN Student_Course std_crs" +
-            " ON c.id = std_crs.course.id" +
-            " WHERE std_crs.student.id = ?1"
+            " ON c.id = std_crs.course.id"
     )
-    List<Course> getCoursesForStudent(long id) ;
+    List<Student_Course> getCoursesForStudent(long id) ;
 
 }
